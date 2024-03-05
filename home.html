@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Restaurant</title>
+    <style>
+        body {
+            margin: 20px 0 0;
+            padding: 0;
+            background-color: #f8f8f8; 
+            color: black;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            background-color: burlywood;
+            font-family:cursive;
+            color: aqua;
+            font-size: 3em;
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+            width: 100%;
+        }
+         
+        h2 {
+            font-family:monospace;
+            color: #4CAF50;
+            animation: moveText 10s linear infinite;
+        }
+
+        @keyframes moveText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        .food-items-container {
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: space-around; 
+            align-items: center;
+            margin-bottom: 150px; 
+        }
+
+        .food-item {
+            margin-top: 20px;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px; 
+        }
+
+        .food-item img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .food-details {
+            margin-top: 10px;
+        }
+
+        .food-name {
+            font-family:cursive;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 1.2em;
+            font-family:monospace ;
+            margin-bottom: 10px;
+        }
+
+        .item-count {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart, .increment, .decrement {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px;
+        }
+
+        .additional-content {
+            margin: 5px 0 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+           
+        }
+
+        .additional-content h2 {
+            margin-bottom: 10px;
+        }
+
+        .rating {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        .rate {
+            margin-top: 20px;
+            color:tomato;
+        }
+        button.go-to-checkout {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 100px;
+        }
+
+        button.go-to-checkout:hover {
+        background-color:springgreen; 
+    }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Our Restaurant</h1>
+    <h2>Experience exquisite flavors in a cozy atmosphere.</h2>
+
+    <div class="food-items-container">
+        <div class="food-item" data-food="chicken briyani" data-price="10.99">
+            <img src="images/food1.jpg" alt="Food Image 1">
+            <div class="food-details">
+                <div class="food-name">Chicken Briyani</div>
+                <div class="price">$10.99</div>
+                <button class="decrement" onclick="decrementItem(1)">-</button>
+                <span class="item-count" id="item-count-1">0</span>
+                <button class="increment" onclick="incrementItem(1)">+</button>
+                <button class="add-to-cart" onclick="addToCart('chicken briyani', 10.99, 1,'food1.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Thai Noodles" data-price="15">
+            <img src="images/food2.jpg" alt="Food Image 2">
+            <div class="food-details">
+                <div class="food-name">Thai Noodles</div>
+                <div class="price">$15</div>
+                <button class="decrement" onclick="decrementItem(2)">-</button>
+                <span class="item-count" id="item-count-2">0</span>
+                <button class="increment" onclick="incrementItem(2)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Thai Noodles', 15, 2,'food2.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Naan" data-price="14">
+            <img src="images/food3.jpg" alt="Food Image 3">
+            <div class="food-details">
+                <div class="food-name">Naan</div>
+                <div class="price">$14</div>
+                <button class="decrement" onclick="decrementItem(3)">-</button>
+                <span class="item-count" id="item-count-3">0</span>
+                <button class="increment" onclick="incrementItem(3)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Naan', 14, 3,'food3.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★★</span>
+            </div>
+        </div>
+
+        <div class="food-item" data-food="Parotta" data-price="10">
+            <img src="images/food4.jpg" alt="Food Image 4">
+            <div class="food-details">
+                <div class="food-name">Parotta</div>
+                <div class="price">$10</div>
+                <button class="decrement" onclick="decrementItem(4)">-</button>
+                <span class="item-count" id="item-count-4">0</span>
+                <button class="increment" onclick="incrementItem(4)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Parotta', 10, 4,'food4.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★☆☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Fish Rice" data-price="18">
+            <img src="images/food5.jpg" alt="Food Image 5">
+            <div class="food-details">
+                <div class="food-name">Fish Rice</div>
+                <div class="price">$18</div>
+                <button class="decrement" onclick="decrementItem(5)">-</button>
+                <span class="item-count" id="item-count-5">0</span>
+                <button class="increment" onclick="incrementItem(5)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Fish Rice', 18, 5,'food5.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+
+        <div class="food-item" data-food="Dosa" data-price="8">
+            <img src="images/food6.jpg" alt="Food Image 6">
+            <div class="food-details">
+                <div class="food-name">Dosa</div>
+                <div class="price">$8</div>
+                <button class="decrement" onclick="decrementItem(6)">-</button>
+                <span class="item-count" id="item-count-6">0</span>
+                <button class="increment" onclick="incrementItem(6)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Dosa', 8, 6,'food6.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★★</span>
+            </div>
+        </div>
+
+        <div class="food-item" data-food="coconut Rice" data-price="20">
+            <img src="images/food7.jpg" alt="Food Image 7">
+            <div class="food-details">
+                <div class="food-name">Coconut Rice</div>
+                <div class="price">$20</div>
+                <button class="decrement" onclick="decrementItem(7)">-</button>
+                <span class="item-count" id="item-count-7">0</span>
+                <button class="increment" onclick="incrementItem(7)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Coconut Rice', 20, 7,'food7.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="whole fried chicken " data-price="25">
+            <img src="images/food8.jpg" alt="Food Image 8">
+            <div class="food-details">
+                <div class="food-name">whole fried chicken </div>
+                <div class="price">$25</div>
+                <button class="decrement" onclick="decrementItem(8)">-</button>
+                <span class="item-count" id="item-count-8">0</span>
+                <button class="increment" onclick="incrementItem(8)">+</button>
+                <button class="add-to-cart" onclick="addToCart('whole fried chicken ', 25, 8,'food8.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Paneer Rice" data-price="15">
+            <img src="images/food9.jpg" alt="Food Image 9">
+            <div class="food-details">
+                <div class="food-name">Paneer Rice</div>
+                <div class="price">$15</div>
+                <button class="decrement" onclick="decrementItem(9)">-</button>
+                <span class="item-count" id="item-count-9">0</span>
+                <button class="increment" onclick="incrementItem(9)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Paneer Rice', 15, 9,'food9.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★★</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Chicken Fried Rice" data-price="18">
+            <img src="images/food10.jpg" alt="Food Image 10">
+            <div class="food-details">
+                <div class="food-name">Chicken Fried Rice</div>
+                <div class="price">$18</div>
+                <button class="decrement" onclick="decrementItem(10)">-</button>
+                <span class="item-count" id="item-count-10">0</span>
+                <button class="increment" onclick="incrementItem(10)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Chicken Fried Rice', 18, 10,'food10.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Hyderabad Briyani" data-price="20">
+            <img src="images/food11.jpg" alt="Food Image 11">
+            <div class="food-details">
+                <div class="food-name">hyderabad briyani</div>
+                <div class="price">$20</div>
+                <button class="decrement" onclick="decrementItem(11)">-</button>
+                <span class="item-count" id="item-count-11">0</span>
+                <button class="increment" onclick="incrementItem(11)">+</button>
+                <button class="add-to-cart" onclick="addToCart('hyderabad briyani', 20, 11,'food11.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★★</span>
+            </div>
+        </div>
+        <div class="food-item" data-food="Veg Meals" data-price="18">
+            <img src="images/food12.jpg" alt="Food Image 12">
+            <div class="food-details">
+                <div class="food-name">Veg Meals</div>
+                <div class="price">$18</div>
+                <button class="decrement" onclick="decrementItem(12)">-</button>
+                <span class="item-count" id="item-count-12">0</span>
+                <button class="increment" onclick="incrementItem(12)">+</button>
+                <button class="add-to-cart" onclick="addToCart('Veg Meals', 18, 12,'food12.jpg')">Add to Cart</button>
+                <span>Rating</span>
+                <span class="rate">★★★★☆</span>
+            </div>
+        </div>
+<button class="go-to-checkout" onclick="goToCheckout()">Go to Checkout</button>
+
+    <div class="additional-content">
+        <h3>Explore Our Menu</h3>
+        <p>Discover a variety of mouth-watering dishes crafted with love.</p>
+    </div>
+    <div class="rating">Rating: ★★★★☆</div>
+
+    <script>
+        let selectedItems = [];
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        function addToCart(foodItem, price, itemId, imageSrc) {
+    let itemCountElement = document.getElementById(`item-count-${itemId}`);
+    let itemCount = parseInt(itemCountElement.textContent);
+
+    if (itemCount > 0) {
+        totalItems += itemCount;
+        totalPrice += price * itemCount;
+
+        selectedItems.push({
+            foodItem: foodItem,
+            price: price,
+            quantity: itemCount,
+            imageSrc: imageSrc
+        });
+        itemCountElement.textContent = 0;
+
+        updateTotalInfo();
+
+        alert(`Added ${foodItem} to the cart!`);
+    } else {
+        alert(`Please add at least one ${foodItem} to the cart.`);
+    }
+    }
+
+        function decrementItem(itemId) {
+            let itemCountElement = document.getElementById(`item-count-${itemId}`);
+            let itemCount = parseInt(itemCountElement.textContent);
+
+            if (itemCount > 0) {
+                itemCount--;
+                itemCountElement.textContent = itemCount;
+            }
+        }
+
+        function incrementItem(itemId) {
+            let itemCountElement = document.getElementById(`item-count-${itemId}`);
+            let itemCount = parseInt(itemCountElement.textContent);
+
+            itemCount++;
+            itemCountElement.textContent = itemCount;
+        }
+
+        function updateTotalInfo() {
+            document.getElementById('total-items').textContent = totalItems;
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+        }
+
+        function goToCheckout() {
+   
+    if (selectedItems && selectedItems.length > 0) {
+        sessionStorage.setItem('checkoutItems', JSON.stringify(selectedItems));
+        window.location.href = 'check.html';
+    } 
+    else {
+        alert('Your cart is empty. Add items to proceed to checkout.');
+    }
+}
+
+    </script>
+</body>
+</html>

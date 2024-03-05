@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color:honeydew;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color:darkcyan;
+            text-decoration:underline;
+        }
+
+        .order-summary {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 8px;
+            background-color:papayawhip;
+           
+        }
+
+        .item {
+            display:flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .item img {
+            max-width: 80px;
+            max-height: 80px;
+            margin-right: 10px;
+            border-radius: 8px;
+        }
+
+        .total {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Order Summary</h1>
+
+    <div class="order-summary" id="order-summary">
+    
+    </div>
+
+    <div class="total" id="total">
+      
+    </div>
+
+    <script>
+        function displayCheckoutItems() {
+            const selectedItems = JSON.parse(sessionStorage.getItem('checkoutItems'));
+
+            if (selectedItems && selectedItems.length > 0) {
+                const orderSummary = document.getElementById('order-summary');
+                orderSummary.innerHTML = '';
+                selectedItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'item';
+                    itemDiv.innerHTML = `
+                        <img src="${item.imageSrc}" alt="${item.foodItem}">
+                        <span>${item.foodItem}</span>
+                        <span>Quantity: ${item.quantity}</span>
+                        <span>Price: $${item.price.toFixed(2)}</span>
+                    `;
+                    orderSummary.appendChild(itemDiv);
+                });
+            }
+        }
+        window.onload = function () {
+            displayCheckoutItems();
+        };
+    </script>
+
+</body>
+
+</html>
